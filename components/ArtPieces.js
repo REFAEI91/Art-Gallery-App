@@ -4,7 +4,6 @@ export default function ArtPieces({ pieces }) {
   console.log(pieces);
   return (
     <>
-      <Spotlight pieces={pieces} />
       <ul
         style={{
           display: "grid",
