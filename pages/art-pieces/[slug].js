@@ -6,7 +6,6 @@ export default function DetailPage({ artPieces }) {
   const { slug } = router.query;
   const artPiece = artPieces.find((piece) => piece.slug === slug);
 
-  const handleClick = () => console.log("clicked");
 
   return (
     <ArtPieceDetails
@@ -17,4 +16,10 @@ export default function DetailPage({ artPieces }) {
       genre={artPiece.genre}
     />
   );
+}
+
+export async function getServerSideProps({ params}) {
+  const response = await fetch('https://example-apis.vercel.app/api/art')
+  const data = await response.json()
+  return {props: { artPieces: data }}
 }
