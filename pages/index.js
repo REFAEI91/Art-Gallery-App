@@ -1,7 +1,7 @@
 import ArtPieces from "@/components/ArtPieces";
 import useSWR from "swr";
 
-const URL = `https://example-apis.vercel.app/api/art`;
+const URL = "https://example-apis.vercel.app/api/art";
 const fetcher = (URL) => fetch(URL).then((res) => res.json());
 
 export default function HomePage() {
