@@ -1,4 +1,8 @@
-export function ArtPiecePreview({ image, name, artist }) {
+import Image from "next/image";
+import Link from "next/link";
+
+
+export function ArtPiecePreview({ image, name, artist, slug }) {
   //  console.log(name, artist);
 
   return (
@@ -14,8 +18,9 @@ export function ArtPiecePreview({ image, name, artist }) {
       }}
     >
       <h3>{name}</h3>
-      <img src={image} alt={name} width={400} height={400} />
-
+      <Link href={`/art-pieces/${slug}`}>
+      <Image src={image} alt={name} width={400} height={400} />
+      </Link>
       <h4 style={{ marginTop: "0.5rem" }}>{artist}</h4>
     </div>
   );

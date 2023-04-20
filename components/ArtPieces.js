@@ -1,5 +1,8 @@
 import { ArtPiecePreview } from "./ArtPiecePreview";
 import Spotlight from "./Spotlight";
+import Link from "next/link";
+import Image from "next/image";
+
 export default function ArtPieces({ pieces }) {
   console.log(pieces);
   return (
@@ -14,11 +17,14 @@ export default function ArtPieces({ pieces }) {
       >
         {pieces.map((piece) => (
           <li key={piece.slug}>
-            <ArtPiecePreview
-              image={piece.imageSource}
-              name={piece.name}
-              artist={piece.artist}
-            />
+          
+              <ArtPiecePreview
+                image={piece.imageSource}
+                name={piece.name}
+                artist={piece.artist}
+                slug={piece.slug}
+              />
+
           </li>
         ))}
       </ul>
