@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "styled-components";
 
 function randomNumber(array) {
   return array[Math.floor(Math.random() * array.length)];
@@ -6,9 +7,16 @@ function randomNumber(array) {
 
 export default function Spotlight({ pieces }) {
   const [randomArtpiece, setRandomArtpiece] = useState(randomNumber(pieces));
-  console.log(randomArtpiece);
+  
+  const StyledSpotlight = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  `
+
+
   return (
-    <>
+    <StyledSpotlight>
       <h1>Spotlight</h1>
       <div
         style={{
@@ -24,10 +32,10 @@ export default function Spotlight({ pieces }) {
         <img
           src={randomArtpiece.imageSource}
           alt={randomArtpiece.name}
-          width={650}
+          width={550}
         />
         <h2>{randomArtpiece.artist}</h2>
       </div>
-    </>
+    </StyledSpotlight>
   );
 }
