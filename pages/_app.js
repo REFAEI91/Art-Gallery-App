@@ -25,6 +25,17 @@ export default function App({ Component, pageProps }) {
   if (error) return <div>Error</div>;
   if (!data) return <div>No data</div>;
 
+  function handleFavorite(slug) {
+    const newArtPiecesInfo = artPiecesInfo.map((artPiece) => {
+      if (artPiece.slug === slug) {
+        return { ...artPiece, favorite: !artPiece.favorite };
+      }
+      return artPiece;
+    });
+    console.log(artPiecesInfo);
+    setArtPiecesInfo(newArtPiecesInfo);
+  }
+
   return (
     <Layout>
       <GlobalStyle />
@@ -33,6 +44,7 @@ export default function App({ Component, pageProps }) {
         data={data}
         artPiecesInfo={artPiecesInfo}
         setArtPiecesInfo={setArtPiecesInfo}
+        onFavorite={handleFavorite}
       />
     </Layout>
   );

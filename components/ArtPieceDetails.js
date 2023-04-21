@@ -10,6 +10,7 @@ export default function ArtPieceDetails({
   year,
   genre,
   artPiece,
+  onFavorite,
 }) {
   const PrettyView = styled.div`
     width: fit-content;
@@ -41,7 +42,7 @@ export default function ArtPieceDetails({
     <PrettyView>
       <FavoriteButton
         isFavorite={artPiece.favorite}
-        onToggleFavorite={() => {}}
+        onToggleFavorite={() => onFavorite(artPiece.slug)}
       />
       <Image
         src={image}
