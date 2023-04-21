@@ -40,11 +40,11 @@ export default function Spotlight({ pieces, artPiecesInfo, onFavorite }) {
               boxShadow: "1px 1px 10px 2px rgba(0, 0, 0, 0.5)",
             }}
           />
-          <FavoriteButton
-            isFavorite={randomArtpiece.favorite}
-            onToggleFavorite={() => onFavorite(randomArtpiece.slug)}
-          />
         </Link>
+        <FavoriteButton
+          isFavorite={randomArtpiece.favorite}
+          onToggleFavorite={() => onFavorite(randomArtpiece.slug)}
+        />
       </ImageContainer>
       <p>{randomArtpiece.name}</p>
     </StyledSpotlight>
