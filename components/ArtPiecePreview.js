@@ -38,8 +38,8 @@ export function ArtPiecePreview({
       }}
     >
       <p style={{ fontSize: "1.1rem" }}>{name}</p>
-      <Link href={`/art-pieces/${slug}`}>
-        <ImageContainer>
+      <ImageContainer>
+        <Link href={`/art-pieces/${slug}`}>
           <Image
             src={image}
             alt={name}
@@ -47,12 +47,12 @@ export function ArtPiecePreview({
             height={500}
             className={"artwork"}
           />
-          <FavoriteButton
-            isFavorite={favorite}
-            onToggleFavorite={() => onFavorite(slug)}
-          />
-        </ImageContainer>
-      </Link>
+        </Link>
+        <FavoriteButton
+          isFavorite={favorite}
+          onToggleFavorite={() => onFavorite(slug)}
+        />
+      </ImageContainer>
       <p style={{ marginTop: "0.5rem", fontStyle: "italic" }}>{artist}</p>
     </div>
   );
