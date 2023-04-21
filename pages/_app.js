@@ -11,11 +11,14 @@ export default function App({ Component, pageProps }) {
   const { data, error, isLoading } = useSWR(URL, fetcher);
 
   useEffect(() => {
-    const artInfo = [];
-    data.forEach((artPiece) => {
-      artInfo.push({ ...artPiece, favorite: false });
-    });
-    setArtPiecesInfo(artInfo);
+    if (data) {
+      const artInfo = [];
+      data.forEach((artPiece) => {
+        artInfo.push({ ...artPiece, favorite: false });
+      });
+
+      setArtPiecesInfo(artInfo);
+    }
   }, [data]);
 
   if (isLoading) return <div>Loading...</div>;
