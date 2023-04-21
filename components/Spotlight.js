@@ -30,7 +30,7 @@ export default function Spotlight({ pieces }) {
       style={{objectFit: "contain", boxShadow: "1px 1px 10px 2px rgba(0, 0, 0, 0.5)"}}
       />
       </Link>
-      <h2>{randomArtpiece.name}</h2>
+      <p>{randomArtpiece.name}</p>
     </StyledSpotlight>
   );
 }

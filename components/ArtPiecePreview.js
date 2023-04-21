@@ -35,13 +35,13 @@ export function ArtPiecePreview({ image, name, artist, slug }) {
         height: "500px",
       }}
     >
-      <h3>{name}</h3>
+      <p style={{fontSize: "1.1rem"}}>{name}</p>
       <Link href={`/art-pieces/${slug}`}>
         <ImageContainer>
       <Image src={image} alt={name} width={500} height={500} className={'artwork'} />
         </ImageContainer>
       </Link>
-      <h4 style={{ marginTop: "0.5rem" }}>{artist}</h4>
+      <p style={{ marginTop: "0.5rem", fontStyle: "italic" }}>{artist}</p>
     </div>
   );
 }

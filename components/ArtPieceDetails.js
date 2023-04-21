@@ -32,9 +32,9 @@ export default function ArtPieceDetails({ image, title, artist, year, genre, art
 
   return (
     <PrettyView>
-      <Image src={image} alt={title} width={artPiece.dimensions.width/2} height={artPiece.dimensions.height/2} className="artwork" />
-      <h1>Title: {title}</h1>
-      <h2>Artist: {artist} </h2>
+      <Image src={image} alt={title} width={artPiece.dimensions.width/3} height={artPiece.dimensions.height/3} className="artwork" />
+      <h2>Title: {title}</h2>
+      <h3>Artist: {artist} </h3>
       <p>Year: {year} </p>
       <p>{genre} </p>
     <Link href="/art-pieces">
