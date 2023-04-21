@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import Link from "next/link";
 
 
 export default function ArtPieceDetails({ image, title, artist, year, genre }) {
@@ -9,7 +10,14 @@ export default function ArtPieceDetails({ image, title, artist, year, genre }) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5vw;
+  margin: 5vw 0;
+  `
+
+  const BackButton = styled.button`
+  background: transparent;
+  border: solid 1px #000;
+  color: #000;
+  border-radius: 15px;
   `
 
   return (
@@ -19,6 +27,9 @@ export default function ArtPieceDetails({ image, title, artist, year, genre }) {
       <h2>Artist: {artist} </h2>
       <p>Year: {year} </p>
       <p>{genre} </p>
+    <Link href="/art-pieces">
+    <BackButton type="button">Back</BackButton>
+      </Link>
     </PrettyView>
   );
 }
