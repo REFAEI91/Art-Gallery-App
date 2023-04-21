@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import Image from "next/image";
+import Link from "next/link";
 
 function randomNumber(array) {
   return array[Math.floor(Math.random() * array.length)];
@@ -7,35 +9,28 @@ function randomNumber(array) {
 
 export default function Spotlight({ pieces }) {
   const [randomArtpiece, setRandomArtpiece] = useState(randomNumber(pieces));
-  
+  console.log(randomArtpiece);
   const StyledSpotlight = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
+  height: 100vh;
+  width: 60vw;
+  text-align: center;
   `
 
 
   return (
     <StyledSpotlight>
       <h1>Spotlight</h1>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          //   margin: "1rem",
-          //   border: "1px groove black",
-          //   borderRadius: "0.5rem",
-          //   padding: "0.2rem",
-        }}
-      >
-        <img
-          src={randomArtpiece.imageSource}
-          alt={randomArtpiece.name}
-          width={550}
-        />
-        <h2>{randomArtpiece.artist}</h2>
-      </div>
+      <Link href={`/art-pieces/${randomArtpiece.slug}`}>
+      <Image 
+      src={randomArtpiece.imageSource} 
+      alt={randomArtpiece.name} 
+      width={randomArtpiece.dimensions.width/3}
+      height={randomArtpiece.dimensions.height/3}
+      style={{objectFit: "contain"}}
+      />
+      </Link>
+      <h2>{randomArtpiece.name}</h2>
     </StyledSpotlight>
   );
 }

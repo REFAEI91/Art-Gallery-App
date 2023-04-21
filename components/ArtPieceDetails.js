@@ -11,6 +11,10 @@ export default function ArtPieceDetails({ image, title, artist, year, genre }) {
   flex-direction: column;
   align-items: center;
   margin: 5vw 0;
+
+  .artwork {
+    object-fit: contain;
+  }
   `
 
   const BackButton = styled.button`
@@ -18,17 +22,19 @@ export default function ArtPieceDetails({ image, title, artist, year, genre }) {
   border: solid 1px #000;
   color: #000;
   border-radius: 15px;
+
+  
   `
 
   return (
     <PrettyView>
-      <Image src={image} alt={title} width={600} height={600} />
+      <Image src={image} alt={title} width={600} height={600} className="artwork" />
       <h1>Title: {title}</h1>
       <h2>Artist: {artist} </h2>
       <p>Year: {year} </p>
       <p>{genre} </p>
     <Link href="/art-pieces">
-    <BackButton type="button">Back</BackButton>
+    <BackButton type="button">Back to gallery</BackButton>
       </Link>
     </PrettyView>
   );

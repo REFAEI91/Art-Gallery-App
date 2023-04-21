@@ -16,6 +16,7 @@ export function ArtPiecePreview({ image, name, artist, slug }) {
       position: relative;
       height: unset;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+      object-fit: contain;
     }
     `
 
@@ -37,7 +38,7 @@ export function ArtPiecePreview({ image, name, artist, slug }) {
       <h3>{name}</h3>
       <Link href={`/art-pieces/${slug}`}>
         <ImageContainer>
-      <Image src={image} alt={name} objectFit="contain" width={500} height={500} className={'artwork'} />
+      <Image src={image} alt={name} width={500} height={500} className={'artwork'} />
         </ImageContainer>
       </Link>
       <h4 style={{ marginTop: "0.5rem" }}>{artist}</h4>
