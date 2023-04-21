@@ -17,6 +17,7 @@ export default function DetailPage({ artPieces }) {
       artist={artPiece.artist}
       year={artPiece.year}
       genre={artPiece.genre}
+      artPiece={artPiece}
       /> 
   );
 }

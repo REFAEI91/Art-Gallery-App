@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 
-export default function ArtPieceDetails({ image, title, artist, year, genre }) {
+export default function ArtPieceDetails({ image, title, artist, year, genre, artPiece }) {
 
   const PrettyView = styled.div`
   width: 100%;
@@ -22,13 +22,17 @@ export default function ArtPieceDetails({ image, title, artist, year, genre }) {
   border: solid 1px #000;
   color: #000;
   border-radius: 15px;
+  padding: 5px 10px;
 
-  
+  &:hover {
+    cursor: pointer;
+    background-color: #fef;
+  }
   `
 
   return (
     <PrettyView>
-      <Image src={image} alt={title} width={600} height={600} className="artwork" />
+      <Image src={image} alt={title} width={artPiece.dimensions.width/2} height={artPiece.dimensions.height/2} className="artwork" />
       <h1>Title: {title}</h1>
       <h2>Artist: {artist} </h2>
       <p>Year: {year} </p>

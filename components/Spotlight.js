@@ -27,7 +27,7 @@ export default function Spotlight({ pieces }) {
       alt={randomArtpiece.name} 
       width={randomArtpiece.dimensions.width/3}
       height={randomArtpiece.dimensions.height/3}
-      style={{objectFit: "contain"}}
+      style={{objectFit: "contain", boxShadow: "1px 1px 10px 2px rgba(0, 0, 0, 0.5)"}}
       />
       </Link>
       <h2>{randomArtpiece.name}</h2>
