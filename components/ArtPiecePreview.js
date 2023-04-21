@@ -23,10 +23,6 @@ export function ArtPiecePreview({ image, name, artist, slug }) {
   return (
     <div
       style={{
-        // display: "grid",
-        // gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))",
-        // gridGap: "1rem",
-        // justifyItems: "center",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
