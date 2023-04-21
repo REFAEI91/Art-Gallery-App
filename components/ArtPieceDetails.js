@@ -12,11 +12,12 @@ export default function ArtPieceDetails({
   artPiece,
 }) {
   const PrettyView = styled.div`
-    width: 100%;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5vw 0;
+    margin: 5vw auto;
+    position: relative;
 
     .artwork {
       object-fit: contain;

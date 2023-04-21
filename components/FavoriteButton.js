@@ -8,7 +8,7 @@ export default function FavoriteButton({ isFavorite, onToggleFavorite }) {
     padding: 5px 10px;
     display: flex;
     position: absolute;
-    top: 10%;
+    top: 3%;
     right: 5%;
   `;
 
