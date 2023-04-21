@@ -1,15 +1,23 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "@/components/Layout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const URL = "https://example-apis.vercel.app/api/art";
 const fetcher = (URL) => fetch(URL).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
-  const [artPiecesInfo, setArtPiecesInfo] = useState({});
-
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
   const { data, error, isLoading } = useSWR(URL, fetcher);
+
+  useEffect(() => {
+    const artInfo = [];
+    data.forEach((artPiece) => {
+      artInfo.push({ ...artPiece, favorite: false });
+    });
+    setArtPiecesInfo(artInfo);
+  }, [data]);
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error</div>;
   if (!data) return <div>No data</div>;
@@ -17,7 +25,12 @@ export default function App({ Component, pageProps }) {
   return (
     <Layout>
       <GlobalStyle />
-      <Component {...pageProps} data={data} />
+      <Component
+        {...pageProps}
+        data={data}
+        artPiecesInfo={artPiecesInfo}
+        setArtPiecesInfo={setArtPiecesInfo}
+      />
     </Layout>
   );
 }
