@@ -1,4 +1,5 @@
 import { ArtPiecePreview } from "./ArtPiecePreview";
+import FavoriteButton from "./FavoriteButton";
 
 export default function ArtPieces({ pieces }) {
   return (
@@ -13,13 +14,14 @@ export default function ArtPieces({ pieces }) {
       >
         {pieces.map((piece) => (
           <li key={piece.slug}>
-              <ArtPiecePreview
-                image={piece.imageSource}
-                name={piece.name}
-                artist={piece.artist}
-                slug={piece.slug}
-              />
-
+            <ArtPiecePreview
+              image={piece.imageSource}
+              name={piece.name}
+              artist={piece.artist}
+              slug={piece.slug}
+            >
+              <FavoriteButton slug={piece.slug} />
+            </ArtPiecePreview>
           </li>
         ))}
       </ul>
