@@ -2,6 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
+import { useImmerLocalStorageState } from "../util/useImmerLocalStorageState";
 
 export default function ArtPieceDetails({
   image,
@@ -12,6 +13,12 @@ export default function ArtPieceDetails({
   artPiece,
   onFavorite,
 }) {
+  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
+    "artPiecesInfo",
+    {
+      defaultValue: [],
+    }
+  );
   const PrettyView = styled.div`
     width: fit-content;
     display: flex;
@@ -37,12 +44,22 @@ export default function ArtPieceDetails({
       background-color: #fef;
     }
   `;
-
+  const handleToggleFavorite = () => {
+    const updatedArtPiecesInfo = JSON.parse(JSON.stringify(artPiecesInfo));
+    const artPieceIndex = updatedArtPiecesInfo.findIndex(
+      (piece) => piece.slug === artPiece.slug
+    );
+    if (artPieceIndex !== -1) {
+      updatedArtPiecesInfo[artPieceIndex].favorite =
+        !updatedArtPiecesInfo[artPieceIndex].favorite;
+      setArtPiecesInfo(updatedArtPiecesInfo);
+    }
+  };
   return (
     <PrettyView>
       <FavoriteButton
-        isFavorite={artPiece.favorite}
-        onToggleFavorite={() => onFavorite(artPiece.slug)}
+        isFavorite={artPiecesInfo.favorite}
+        onToggleFavorite={handleToggleFavorite}
       />
       <Image
         src={image}

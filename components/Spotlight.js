@@ -3,13 +3,36 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
+import { useImmerLocalStorageState } from "../util/useImmerLocalStorageState";
 
 function randomNumber(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-export default function Spotlight({ pieces, artPiecesInfo, onFavorite }) {
+export default function Spotlight({ pieces, onFavorite }) {
   const [randomArtpiece, setRandomArtpiece] = useState(randomNumber(pieces));
+  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
+    "artPiecesInfo",
+    {
+      defaultValue: [],
+    }
+  );
+  const handleToggleFavorite = () => {
+    const updatedArtPiecesInfo = [...artPiecesInfo];
+    if (
+      updatedArtPiecesInfo.find(
+        (artPiece) => artPiece.slug === randomArtpiece.slug
+      )
+    ) {
+      updatedArtPiecesInfo.find(
+        (artPiece) => artPiece.slug === randomArtpiece.slug
+      ).favorite = !updatedArtPiecesInfo.find(
+        (artPiece) => artPiece.slug === randomArtpiece.slug
+      ).favorite;
+      setArtPiecesInfo(updatedArtPiecesInfo);
+    }
+  };
+  console.log(artPiecesInfo);
 
   const StyledSpotlight = styled.div`
     margin: 0 auto;
@@ -43,7 +66,7 @@ export default function Spotlight({ pieces, artPiecesInfo, onFavorite }) {
         </Link>
         <FavoriteButton
           isFavorite={randomArtpiece.favorite}
-          onToggleFavorite={() => onFavorite(randomArtpiece.slug)}
+          onToggleFavorite={handleToggleFavorite}
         />
       </ImageContainer>
       <p>{randomArtpiece.name}</p>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-export default function FavoriteButton({ isFavorite, onFavorite }) {
+export default function FavoriteButton({ isFavorite, onToggleFavorite }) {
   const FavoriteButton = styled.button`
     background: transparent;
     border: none;
@@ -19,7 +19,7 @@ export default function FavoriteButton({ isFavorite, onFavorite }) {
   `;
 
   return (
-    <FavoriteButton onClick={onFavorite}>
+    <FavoriteButton onClick={onToggleFavorite}>
       <Image src="/heart.svg" alt="" width={20} height={20} />
     </FavoriteButton>
   );

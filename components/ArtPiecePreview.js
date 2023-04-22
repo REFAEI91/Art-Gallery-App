@@ -4,20 +4,14 @@ import styled from "styled-components";
 import FavoriteButton from "./FavoriteButton";
 import { useImmerLocalStorageState } from "../util/useImmerLocalStorageState";
 
-export function ArtPiecePreview({
-  image,
-  name,
-  artist,
-  slug,
-  favorite,
-  onFavorite,
-}) {
+export function ArtPiecePreview({ image, name, artist, slug, favorite }) {
   const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
     "artPiecesInfo",
     {
       defaultValue: [],
     }
   );
+  console.log(artPiecesInfo);
   const ImageContainer = styled.div`
     width: 250px;
     display: flex;
@@ -32,7 +26,16 @@ export function ArtPiecePreview({
       object-fit: contain;
     }
   `;
-  console.log(artPiecesInfo);
+  const handleToggleFavorite = () => {
+    const updatedArtPiecesInfo = [...artPiecesInfo];
+    if (updatedArtPiecesInfo.find((artPiece) => artPiece.slug === slug)) {
+      updatedArtPiecesInfo.find((artPiece) => artPiece.slug === slug).favorite =
+        !updatedArtPiecesInfo.find((artPiece) => artPiece.slug === slug)
+          .favorite;
+      setArtPiecesInfo(updatedArtPiecesInfo);
+    }
+  };
+
   return (
     <div
       style={{
@@ -57,7 +60,7 @@ export function ArtPiecePreview({
         </Link>
         <FavoriteButton
           isFavorite={favorite}
-          onToggleFavorite={() => onFavorite(slug)}
+          onToggleFavorite={handleToggleFavorite}
         />
       </ImageContainer>
       <p style={{ marginTop: "0.5rem", fontStyle: "italic" }}>{artist}</p>
