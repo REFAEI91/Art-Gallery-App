@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import FavoriteButton from "./FavoriteButton";
+import { useImmerLocalStorageState } from "../util/useImmerLocalStorageState";
 
 export function ArtPiecePreview({
   image,
@@ -11,6 +12,12 @@ export function ArtPiecePreview({
   favorite,
   onFavorite,
 }) {
+  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
+    "artPiecesInfo",
+    {
+      defaultValue: [],
+    }
+  );
   const ImageContainer = styled.div`
     width: 250px;
     display: flex;
@@ -25,7 +32,7 @@ export function ArtPiecePreview({
       object-fit: contain;
     }
   `;
-
+  console.log(artPiecesInfo);
   return (
     <div
       style={{

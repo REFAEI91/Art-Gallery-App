@@ -2,14 +2,19 @@ import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "@/components/Layout";
 import { useState, useEffect } from "react";
+import { useImmerLocalStorageState } from "../util/useImmerLocalStorageState";
 
 const URL = "https://example-apis.vercel.app/api/art";
 const fetcher = (URL) => fetch(URL).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
+    "artPiecesInfo",
+    {
+      defaultValue: [],
+    }
+  );
   const { data, error, isLoading } = useSWR(URL, fetcher);
-
   useEffect(() => {
     if (data) {
       const artInfo = [];
